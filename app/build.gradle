@@ -51,7 +51,9 @@ dependencies {
     implementation "com.mikepenz:iconics-core:3.0.4@aar"
     implementation "com.mikepenz:iconics-views:3.0.4@aar"
     implementation 'com.mikepenz:ionicons-typeface:2.0.1.4@aar'
+    implementation 'com.mikepenz:fontawesome-typeface:5.0.13.0@aar'
     implementation 'com.github.florent37:arclayout:1.0.3'
+
 
 
 }

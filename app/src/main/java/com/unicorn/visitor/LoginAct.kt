@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.blankj.utilcode.util.ToastUtils
+import com.unicorn.visitor.R.id.*
 import com.unicorn.visitor.component.ComponentsHolder
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.act_login.*

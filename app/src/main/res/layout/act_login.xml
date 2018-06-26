@@ -25,7 +25,7 @@
                 android:layout_height="76dp"
                 android:layout_marginBottom="24dp"
                 app:iiv_color="@android:color/white"
-                app:iiv_icon="ion-ios-contact"
+                app:iiv_icon="faw-user-circle2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
