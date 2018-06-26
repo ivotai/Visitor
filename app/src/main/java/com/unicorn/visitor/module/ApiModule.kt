@@ -11,6 +11,6 @@ class ApiModule{
 
     @Singleton
     @Provides
-    fun provideLoginApi(retrofit: Retrofit): GeneralApi = retrofit.create(GeneralApi::class.java)
+    fun provideGeneralApi(retrofit: Retrofit): GeneralApi = retrofit.create(GeneralApi::class.java)
 
 }
