@@ -6,13 +6,14 @@ import android.util.AttributeSet
 import android.widget.TextView
 import android.graphics.RectF
 import android.support.v4.content.ContextCompat
+import android.view.Gravity
 import android.widget.Button
 
 
 /**
  *   2018/6/10: 由 thinkpad 创建
  */
-class LoginButton(context: Context?, attrs: AttributeSet?) : Button(context, attrs) {
+class LoginButton(context: Context?, attrs: AttributeSet?) : TextView(context, attrs) {
 
     private val paint = Paint()
     private lateinit var rectF: RectF
@@ -24,6 +25,7 @@ class LoginButton(context: Context?, attrs: AttributeSet?) : Button(context, att
     init {
         setTextColor(Color.WHITE)
         initPaint()
+        gravity = Gravity.CENTER
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -36,7 +38,7 @@ class LoginButton(context: Context?, attrs: AttributeSet?) : Button(context, att
     }
 
     override fun onDraw(canvas: Canvas) {
-        val corner = 20f
+        val corner = 1000f
         canvas.drawRoundRect(rectF, corner, corner, paint)
         super.onDraw(canvas)
     }

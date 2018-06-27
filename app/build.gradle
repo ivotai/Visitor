@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 //    implementation 'com.android.support:support-v4:27.1.0'
@@ -53,7 +53,6 @@ dependencies {
     implementation 'com.mikepenz:ionicons-typeface:2.0.1.4@aar'
     implementation 'com.mikepenz:fontawesome-typeface:5.0.13.0@aar'
     implementation 'com.github.florent37:arclayout:1.0.3'
-
 
 
 }

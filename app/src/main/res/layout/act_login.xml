@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginAct"
+    tools:context=".act.LoginAct"
     tools:ignore="HardcodedText,SpUsage,Autofill">
 
     <com.github.florent37.arclayout.ArcLayout
@@ -42,7 +42,7 @@
         android:layout_marginTop="64dp"
         android:text="账号"
         android:textColor="@color/colorPrimary"
-        android:textSize="16dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/arcLayout" />
 
@@ -59,7 +59,7 @@
         android:padding="4dp"
         android:textColor="@color/md_black"
         android:textColorHint="@color/md_grey_400"
-        android:textSize="15dp"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAccount" />
@@ -83,7 +83,7 @@
         android:layout_marginTop="32dp"
         android:text="密码"
         android:textColor="@color/colorPrimary"
-        android:textSize="16dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAccount" />
 
@@ -100,7 +100,7 @@
         android:padding="4dp"
         android:textColor="@color/md_black"
         android:textColorHint="@color/md_grey_400"
-        android:textSize="15dp"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
@@ -124,7 +124,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="32dp"
         android:text="登录"
-        android:textSize="16dp"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword" />
