@@ -21,6 +21,9 @@ allprojects {
         jcenter()
         maven { url 'http://github.com/wada811/Android-Material-Design-Colors/raw/master/repository/' }
         maven { url "https://jitpack.io" }
+        flatDir {
+            dirs 'libs'
+        }
     }
 }
 
