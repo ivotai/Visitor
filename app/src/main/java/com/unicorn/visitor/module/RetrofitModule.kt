@@ -1,6 +1,7 @@
 package com.unicorn.visitor.module
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
+import com.unicorn.visitor.model.UserInfo
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -17,16 +18,16 @@ class RetrofitModule {
     @Provides
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
             .addNetworkInterceptor(StethoInterceptor())
-//            .addInterceptor { chain ->
-//                val pathSegments = chain.request().url().encodedPathSegments()
-//                if (pathSegments.contains("login") || pathSegments.contains("register"))
-//                    chain.proceed(chain.request())
-//                else
-//                    chain.request().newBuilder()
-//                            .addHeader("Cookie", "SESSION=${UserInfo.jsessionid}")
-//                            .build()
-//                            .let { chain.proceed(it) }
-//            }
+            .addInterceptor { chain ->
+                val pathSegments = chain.request().url().encodedPathSegments()
+                if (pathSegments.contains("login"))
+                    chain.proceed(chain.request())
+                else
+                    chain.request().newBuilder()
+                            .addHeader("Cookie", "SESSION=${UserInfo.jsessionid}")
+                            .build()
+                            .let { chain.proceed(it) }
+            }
             .build()
 
     @Singleton

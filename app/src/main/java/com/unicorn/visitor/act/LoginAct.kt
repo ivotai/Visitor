@@ -10,6 +10,7 @@ import com.unicorn.visitor.R.id.etAccount
 import com.unicorn.visitor.clicks
 import com.unicorn.visitor.component.ComponentsHolder
 import com.unicorn.visitor.custom
+import com.unicorn.visitor.model.UserInfo
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.act_login.*
 
@@ -37,6 +38,7 @@ class LoginAct : AppCompatActivity() {
                 onNext = {
                     if (it.success) {
                         it.currentUser.username.let { ToastUtils.showShort(it) }
+                        UserInfo.loginResponse = it
                     } else {
                         it.message.let { ToastUtils.showShort(it) }
                     }
