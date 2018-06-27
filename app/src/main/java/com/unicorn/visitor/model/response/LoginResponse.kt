@@ -1,6 +1,4 @@
-package com.unicorn.visitor.model
-
-import com.unicorn.visitor.model.response.MessageResponse
+package com.unicorn.visitor.model.response
 
 /**
  *   2018/6/26: 由 thinkpad 创建

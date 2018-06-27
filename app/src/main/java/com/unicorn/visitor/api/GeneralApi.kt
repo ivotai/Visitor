@@ -1,10 +1,11 @@
 package com.unicorn.visitor.api
 
-import com.unicorn.visitor.model.LeaderInfo
-import com.unicorn.visitor.model.LoginResponse
-import com.unicorn.visitor.model.VisitRecordInfo
+import com.unicorn.visitor.model.Leader
+import com.unicorn.visitor.model.PageInfo
+import com.unicorn.visitor.model.response.LoginResponse
+import com.unicorn.visitor.model.VisitRecord
+import com.unicorn.visitor.model.response.PageResponse
 import io.reactivex.Observable
-import io.reactivex.Single
 import retrofit2.http.*
 
 interface GeneralApi {
@@ -13,13 +14,15 @@ interface GeneralApi {
     @POST("login/account")
     fun login(@Field("username") username: String, @Field("password") password: String): Observable<LoginResponse>
 
-//    @FormUrlEncoded
     @GET("api/v1/leader/app/list")
-    fun getLeaderList(): Observable<List<LeaderInfo>>
+    fun getAllLeader(): Observable<List<Leader>>
 
     @Headers("Content-Type: application/json")
     @POST("api/v1/visitRecord/app")
-    fun addVisitRecord(@Body visitRecord: VisitRecordInfo): Observable<Any>
+    fun addVisitRecord(@Body visitRecord: VisitRecord): Observable<Any>
+
+    @GET("api/v1/visitRecord/app")
+    fun getRecordByPage(@Query("pageInfo") pageInfo:PageInfo): Observable<PageResponse<VisitRecord>>
 
 
 //    @FormUrlEncoded

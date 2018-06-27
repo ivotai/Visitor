@@ -8,6 +8,10 @@ import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.unicorn.visitor.R
+import com.unicorn.visitor.component.ComponentsHolder
+import com.unicorn.visitor.custom
+import com.unicorn.visitor.model.PageInfo
+import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.act_guard.*
 import me.majiajie.pagerbottomtabstrip.item.BaseTabItem
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView2
@@ -19,7 +23,18 @@ class GuardAct : AppCompatActivity() {
         setContentView(R.layout.act_guard)
         initViews()
 
-        Intent(this,AddVisitRecordAct::class.java).let { startActivity(it) }
+        val api = ComponentsHolder.appComponent.getGeneralApi()
+        api.getRecordByPage(PageInfo(1)).custom().subscribeBy(
+                onNext = {
+                    it
+                },
+                onError = {
+                    it
+                }
+        )
+
+
+//        Intent(this,AddVisitRecordAct::class.java).let { startActivity(it) }
     }
 
     private fun initViews() {

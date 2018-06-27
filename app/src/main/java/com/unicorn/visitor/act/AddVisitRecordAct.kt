@@ -14,13 +14,12 @@ import com.baidu.ocr.sdk.model.IDCardResult
 import com.baidu.ocr.ui.camera.CameraActivity
 import com.baidu.ocr.ui.camera.CameraNativeHelper
 import com.baidu.ocr.ui.camera.CameraView
-import com.blankj.utilcode.util.ToastUtils
 import com.unicorn.visitor.R
 import com.unicorn.visitor.component.ComponentsHolder
 import com.unicorn.visitor.custom
-import com.unicorn.visitor.model.LeaderInfo
-import com.unicorn.visitor.model.VisitRecordInfo
-import com.unicorn.visitor.model.VisitorInfo
+import com.unicorn.visitor.model.Leader
+import com.unicorn.visitor.model.VisitRecord
+import com.unicorn.visitor.model.Visitor
 import com.unicorn.visitor.orc.FileUtil
 import io.reactivex.rxkotlin.subscribeBy
 import java.io.File
@@ -28,7 +27,7 @@ import java.util.*
 
 class AddVisitRecordAct : AppCompatActivity() {
 
-    lateinit var leaderList: List<LeaderInfo>
+    lateinit var leaderList: List<Leader>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +35,7 @@ class AddVisitRecordAct : AppCompatActivity() {
         initAccessTokenWithAkSk()
 
         val api = ComponentsHolder.appComponent.getGeneralApi()
-        api.getLeaderList().custom().subscribeBy(
+        api.getAllLeader().custom().subscribeBy(
                 onNext = {
                     leaderList = it
                 },
@@ -113,9 +112,9 @@ class AddVisitRecordAct : AppCompatActivity() {
     }
 
     private fun addVisitRecord(result: IDCardResult) {
-        val visitor = VisitorInfo(name = result.name.words, idCard = result.idNumber.words, gender = result.gender.words)
+        val visitor = Visitor(name = result.name.words, idCard = result.idNumber.words, gender = result.gender.words)
         val leader = leaderList[0]
-        val record = VisitRecordInfo(visitor, leader, Date().time, Date().time)
+        val record = VisitRecord(visitor, leader, Date().time, Date().time)
         val api = ComponentsHolder.appComponent.getGeneralApi()
         api.addVisitRecord(record).custom().subscribeBy(
                 onNext = {},

@@ -1,5 +1,7 @@
 package com.unicorn.visitor.model
 
+import com.unicorn.visitor.model.response.LoginResponse
+
 object UserInfo {
 
     lateinit var loginResponse: LoginResponse
