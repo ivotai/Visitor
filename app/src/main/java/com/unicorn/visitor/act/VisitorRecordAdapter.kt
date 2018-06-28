@@ -8,7 +8,7 @@ import com.unicorn.visitor.model.VisitRecord
 class VisitorRecordAdapter : BaseQuickAdapter<VisitRecord, BaseViewHolder>(R.layout.item_visit_record) {
 
     override fun convert(helper: BaseViewHolder, item: VisitRecord) {
-
+        helper.setText(R.id.tvHello, "${item.visitor.name}访问${item.leader.name}")
     }
 
 }

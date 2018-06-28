@@ -37,8 +37,8 @@ class LoginAct : AppCompatActivity() {
                 },
                 onNext = {
                     if (it.success) {
-                        it.currentUser.username.let { ToastUtils.showShort(it) }
                         UserInfo.loginResponse = it
+                        finish()
                     } else {
                         it.message.let { ToastUtils.showShort(it) }
                     }
