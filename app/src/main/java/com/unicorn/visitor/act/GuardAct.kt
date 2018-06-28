@@ -20,18 +20,6 @@ class GuardAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_guard)
         initViews()
-
-        val api = ComponentsHolder.appComponent.getGeneralApi()
-        api.getVisitRecord(1).custom().subscribeBy(
-                onNext = {
-                    it
-                },
-                onError = {
-                    it
-                }
-        )
-
-
 //        Intent(this,AddVisitRecordAct::class.java).let { startActivity(it) }
     }
 
