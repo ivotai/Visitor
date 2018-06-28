@@ -1,7 +1,6 @@
 package com.unicorn.visitor.api
 
 import com.unicorn.visitor.model.Leader
-import com.unicorn.visitor.model.PageInfo
 import com.unicorn.visitor.model.response.LoginResponse
 import com.unicorn.visitor.model.VisitRecord
 import com.unicorn.visitor.model.response.PageResponse
@@ -22,7 +21,7 @@ interface GeneralApi {
     fun addVisitRecord(@Body visitRecord: VisitRecord): Observable<Any>
 
     @GET("api/v1/visitRecord/app")
-    fun getRecordByPage(@Query("pageInfo") pageInfo:PageInfo): Observable<PageResponse<VisitRecord>>
+    fun getVisitRecord(@Query("page") page: Int, @Query("pageSize") pageSize: Int = 10): Observable<PageResponse<VisitRecord>>
 
 
 //    @FormUrlEncoded

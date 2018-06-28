@@ -1,6 +1,5 @@
 package com.unicorn.visitor.act
 
-import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,7 +9,6 @@ import com.mikepenz.iconics.typeface.IIcon
 import com.unicorn.visitor.R
 import com.unicorn.visitor.component.ComponentsHolder
 import com.unicorn.visitor.custom
-import com.unicorn.visitor.model.PageInfo
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.act_guard.*
 import me.majiajie.pagerbottomtabstrip.item.BaseTabItem
@@ -24,7 +22,7 @@ class GuardAct : AppCompatActivity() {
         initViews()
 
         val api = ComponentsHolder.appComponent.getGeneralApi()
-        api.getRecordByPage(PageInfo(1)).custom().subscribeBy(
+        api.getVisitRecord(1).custom().subscribeBy(
                 onNext = {
                     it
                 },
