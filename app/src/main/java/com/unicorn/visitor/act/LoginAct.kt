@@ -38,11 +38,11 @@ class LoginAct : AppCompatActivity() {
                 onNext = {
                     if (it.success) {
                         UserInfo.loginResponse = it
+                        Intent(this@LoginAct, GuardAct::class.java).let { startActivity(it) }
                         finish()
                     } else {
                         it.message.let { ToastUtils.showShort(it) }
                     }
-                    Intent(this@LoginAct, GuardAct::class.java).let { startActivity(it) }
                 },
                 onComplete = {}
         )

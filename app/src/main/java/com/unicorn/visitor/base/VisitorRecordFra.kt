@@ -2,9 +2,11 @@ package com.unicorn.visitor.base
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.unicorn.visitor.R
 import com.unicorn.visitor.act.VisitorRecordAdapter
 import com.unicorn.visitor.component.ComponentsHolder
+import com.unicorn.visitor.model.UserInfo
 import com.unicorn.visitor.model.VisitRecord
 import com.unicorn.visitor.model.response.PageResponse
 import io.reactivex.Observable
@@ -28,6 +30,11 @@ class VisitorRecordFra : PageFra<VisitRecord>() {
     override fun loadPage(page: Int): Observable<PageResponse<VisitRecord>> {
         val api = ComponentsHolder.appComponent.getGeneralApi()
         return api.getVisitRecord(page)
+    }
+
+    override fun initViews() {
+        super.initViews()
+        flAdd.visibility = if (UserInfo.isGuard) View.VISIBLE else View.INVISIBLE
     }
 
 }

@@ -5,14 +5,17 @@ package com.unicorn.visitor.model.response
  */
 
 class LoginResponse(
-        success: Boolean, //true
+        success: Boolean,
         message: String,
         val currentUser: CurrentUser,
-        val jsessionid: String, //9c203285-86c7-4f96-bc8f-c19ac17046b5
-        val loginToken: String //728a3c39-14f6-4577-b21f-eb3b0044631a
+        val jsessionid: String,
+        val loginToken: String
 ) : MessageResponse(success, message)
 
 data class CurrentUser(
-        val userId: String, //2ed9f03e135e47dba9e92bcebc75ea0a
-        val username: String //门卫
+        val roleTag: String,
+        val roleId: String,
+        val roleName: String,
+        val userId: String,
+        val username: String
 )

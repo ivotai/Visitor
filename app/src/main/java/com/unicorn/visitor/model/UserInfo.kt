@@ -12,8 +12,13 @@ object UserInfo {
 
     var isLogin = false
 
-    val username get() = loginResponse.currentUser.username
+//    val username get() = currentUser.username
 
-    val userId:String get() = loginResponse.currentUser.userId
+//    val userId: String get() = currentUser.userId
 
+    val isGuard get() = currentUser.roleTag == "Guard"
+
+    val isSecretary get() = currentUser.roleTag == "Secretary"
+
+    private val currentUser get() = loginResponse.currentUser
 }

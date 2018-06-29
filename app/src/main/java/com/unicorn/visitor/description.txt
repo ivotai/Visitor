@@ -10,3 +10,4 @@ https://github.com/mikepenz/Android-Iconics/issues/306
 2. 第一次进入页面会请求两次第一页
 原来是以前的测试代码没删掉。
 
+3. 最好限制一下，只能秘书和门卫登录。
