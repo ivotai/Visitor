@@ -114,7 +114,7 @@ class AddVisitRecordAct : AppCompatActivity() {
     private fun addVisitRecord(result: IDCardResult) {
         val visitor = Visitor(name = result.name.words, idCard = result.idNumber.words, gender = result.gender.words)
         val leader = leaderList[0]
-        val record = VisitRecord(visitor, leader, Date().time, Date().time)
+        val record = VisitRecord(visitor, leader, Date().time)
         val api = ComponentsHolder.appComponent.getGeneralApi()
         api.addVisitRecord(record).custom().subscribeBy(
                 onNext = {},
