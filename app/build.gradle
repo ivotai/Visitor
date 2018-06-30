@@ -56,6 +56,7 @@ dependencies {
     implementation 'com.loopeer.lib:shadow:0.0.4-beta3'
     implementation files('libs/ocr-sdk.jar')
     implementation project(':ocr_ui')
+    implementation 'net.danlew:android.joda:2.9.9.4'
 }
 
 kapt {
