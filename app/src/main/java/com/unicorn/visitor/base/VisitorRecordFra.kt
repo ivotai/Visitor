@@ -41,7 +41,6 @@ class VisitorRecordFra : PageFra<VisitRecord>() {
         flAdd.visibility = if (UserInfo.isGuard) View.VISIBLE else View.INVISIBLE
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         RxBus.get().register(this)
@@ -53,7 +52,7 @@ class VisitorRecordFra : PageFra<VisitRecord>() {
     }
 
     @Subscribe
-    fun onRefreshVisitRecordListEvent(event: RefreshVisitRecordListEvent) {
+    fun onRefreshEvent(event: RefreshVisitRecordListEvent) {
         loadFirstPage()
     }
 
