@@ -57,6 +57,8 @@ dependencies {
     implementation files('libs/ocr-sdk.jar')
     implementation project(':ocr_ui')
     implementation 'net.danlew:android.joda:2.9.9.4'
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+    implementation 'com.hwangjr.rxbus:rxbus:2.0.0'
 }
 
 kapt {

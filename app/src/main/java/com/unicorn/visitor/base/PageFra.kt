@@ -43,7 +43,7 @@ abstract class PageFra<T> : BaseFra() {
     }
 
     @SuppressLint("CheckResult")
-    private fun loadFirstPage() {
+    protected fun loadFirstPage() {
         adapter1.data.clear()
         swipeRefreshLayout1.isRefreshing = true
         loadPage(page)
