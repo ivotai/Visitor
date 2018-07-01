@@ -13,7 +13,7 @@ import android.widget.Button
 /**
  *   2018/6/10: 由 thinkpad 创建
  */
-class LoginButton(context: Context?, attrs: AttributeSet?) : TextView(context, attrs) {
+class BlueButton(context: Context?, attrs: AttributeSet?) : TextView(context, attrs) {
 
     private val paint = Paint()
     private lateinit var rectF: RectF

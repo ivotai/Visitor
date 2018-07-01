@@ -1,5 +1,6 @@
 package com.unicorn.visitor.busi.visitRecord
 
+import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
@@ -46,6 +47,12 @@ class VisitorRecordAdapter : BaseQuickAdapter<VisitRecord, BaseViewHolder>(R.lay
                 DialogUtil.showConfirm(mContext, "确认拒绝该请求",
                         MaterialDialog.SingleButtonCallback { _, _ -> process(item.objectId, 3) }
                 )
+            }
+
+            getView<View>(R.id.root).clicks().subscribe {
+                Intent(mContext,VisitRecordDetailAct::class.java).apply {
+                    putExtra("visitRecord",item)
+                }.let { mContext.startActivity(it) }
             }
         }
     }

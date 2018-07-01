@@ -44,7 +44,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="访客登记"
+            android:text="来访详情"
             android:textColor="@color/md_white"
             android:textSize="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -57,6 +57,7 @@
             android:id="@+id/flScan"
             android:layout_width="56dp"
             android:layout_height="56dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -125,7 +126,6 @@
                             android:textSize="16dp" />
 
                         <TextView
-                            android:hint="请扫描身份证"
                             android:id="@+id/tvName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -158,7 +158,6 @@
                             android:id="@+id/tvGender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="请扫描身份证"
                             android:textColor="@color/md_black"
                             android:textSize="16dp" />
 
@@ -186,10 +185,34 @@
 
                         <TextView
                             android:id="@+id/tvIdCard"
-                            android:hint="请扫描身份证"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/md_black"
+                            android:textSize="16dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="16dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <com.unicorn.visitor.ui.YellowButton
+                            android:id="@+id/tvBlacklist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="16dp"
+                            android:paddingTop="6dp"
+                            android:paddingRight="16dp"
+                            android:paddingBottom="6dp"
+                            android:text="加入黑名单"
                             android:textSize="16dp" />
 
                     </LinearLayout>
@@ -237,12 +260,10 @@
                             android:textColor="@color/md_grey_600"
                             android:textSize="16dp" />
 
-                        <EditText
-                            android:id="@+id/etCompany"
+                        <TextView
+                            android:id="@+id/tvCompany"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:hint="可为空"
                             android:textColor="@color/md_black"
                             android:textSize="16dp" />
 
@@ -272,7 +293,6 @@
                             android:id="@+id/tvLeader"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="请选择"
                             android:textColor="@color/md_black"
                             android:textSize="16dp" />
 
@@ -302,7 +322,6 @@
                             android:id="@+id/tvReserveTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="请选择"
                             android:textColor="@color/md_black"
                             android:textSize="16dp" />
 
@@ -336,13 +355,11 @@
                         android:textSize="17dp"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/etReason"
+                    <TextView
+                        android:id="@+id/tvReason"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@null"
                         android:gravity="top"
-                        android:hint="请填写来访事由"
                         android:minHeight="100dp"
                         android:textSize="16dp" />
 
@@ -350,13 +367,37 @@
 
             </com.loopeer.shadow.ShadowView>
 
-            <com.unicorn.visitor.ui.BlueButton
-                android:id="@+id/tvConfirm"
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="32dp"
-                android:text="确认"
-                android:textSize="18dp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <com.unicorn.visitor.ui.GreenButton
+                    android:id="@+id/tvAgree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="同意"
+                    android:textSize="18dp" />
+
+                <com.unicorn.visitor.ui.OrangeButton
+                    android:id="@+id/tvDisagree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="拒绝"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

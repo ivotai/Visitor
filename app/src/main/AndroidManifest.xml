@@ -22,8 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.unicorn.visitor.busi.MainAct" />
-        <activity android:name="com.unicorn.visitor.busi.visitRecord.AddVisitRecordAct"/>
+        <activity android:name=".busi.MainAct" />
+        <activity android:name=".busi.visitRecord.AddVisitRecordAct" />
+        <activity android:name=".busi.visitRecord.VisitRecordDetailAct"></activity>
     </application>
 
 </manifest>
