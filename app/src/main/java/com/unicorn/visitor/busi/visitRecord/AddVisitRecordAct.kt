@@ -1,9 +1,10 @@
 package com.unicorn.visitor.busi.visitRecord
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import com.baidu.ocr.sdk.OCR
 import com.baidu.ocr.sdk.OnResultListener
@@ -16,22 +17,24 @@ import com.baidu.ocr.ui.camera.CameraNativeHelper
 import com.baidu.ocr.ui.camera.CameraView
 import com.unicorn.visitor.R
 import com.unicorn.visitor.app.dagger2.component.ComponentsHolder
+import com.unicorn.visitor.clicks
 import com.unicorn.visitor.custom
 import com.unicorn.visitor.model.Leader
-import com.unicorn.visitor.model.VisitRecord
 import com.unicorn.visitor.model.Visitor
 import com.unicorn.visitor.util.FileUtil
 import io.reactivex.rxkotlin.subscribeBy
+import kotlinx.android.synthetic.main.act_add_visit_record.*
 import java.io.File
-import java.util.*
 
 class AddVisitRecordAct : AppCompatActivity() {
 
     lateinit var leaderList: List<Leader>
 
+    @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_add_visit_record)
+
         initAccessTokenWithAkSk()
 
         val api = ComponentsHolder.appComponent.getGeneralApi()
@@ -43,6 +46,9 @@ class AddVisitRecordAct : AppCompatActivity() {
                     it
                 }
         )
+
+        flBack.clicks().subscribe { finish() }
+        flScan.clicks().subscribe { scan() }
     }
 
     private fun initAccessTokenWithAkSk() {
@@ -68,10 +74,10 @@ class AddVisitRecordAct : AppCompatActivity() {
             }
 //            ToastUtils.showShort("本地质量控制初始化错误，错误原因： $msg")
         }
+        scan()
     }
 
-
-    override fun onBackPressed() {
+    fun scan() {
         val intent = Intent(this, CameraActivity::class.java)
         intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                 FileUtil.getSaveFile(application).absolutePath)
@@ -86,6 +92,20 @@ class AddVisitRecordAct : AppCompatActivity() {
         startActivityForResult(intent, 233)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 233 && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                val contentType = data.getStringExtra(CameraActivity.KEY_CONTENT_TYPE)
+                val filePath = FileUtil.getSaveFile(applicationContext).absolutePath
+                if (!TextUtils.isEmpty(contentType)) {
+                    if (CameraActivity.CONTENT_TYPE_ID_CARD_FRONT == contentType) {
+                        recIDCard(filePath)
+                    }
+                }
+            }
+        }
+    }
 
     private fun recIDCard(filePath: String) {
         IDCardParams().apply {
@@ -112,29 +132,17 @@ class AddVisitRecordAct : AppCompatActivity() {
     }
 
     private fun addVisitRecord(result: IDCardResult) {
-        val visitor = Visitor(name = result.name.words, idCard = result.idNumber.words, gender = result.gender.words)
-        val leader = leaderList[0]
-        val record = VisitRecord(visitor, leader, Date().time)
-        val api = ComponentsHolder.appComponent.getGeneralApi()
-        api.addVisitRecord(record).custom().subscribeBy(
-                onNext = {},
-                onError = {}
-        )
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 233 && resultCode == Activity.RESULT_OK) {
-            if (data != null) {
-                val contentType = data.getStringExtra(CameraActivity.KEY_CONTENT_TYPE)
-                val filePath = FileUtil.getSaveFile(applicationContext).absolutePath
-                if (!TextUtils.isEmpty(contentType)) {
-                    if (CameraActivity.CONTENT_TYPE_ID_CARD_FRONT == contentType) {
-                        recIDCard(filePath)
-                    }
-                }
-            }
-        }
+        val visitor = Visitor(name = result.name.words, gender = result.gender.words, idCard = result.idNumber.words)
+        tvName.text = visitor.name
+        tvGender.text = visitor.gender
+        tvIdCard.text = visitor.idCard
+//        val leader = leaderList[0]
+//        val record = VisitRecord(visitor, leader, Date().time)
+//        val api = ComponentsHolder.appComponent.getGeneralApi()
+//        api.addVisitRecord(record).custom().subscribeBy(
+//                onNext = {},
+//                onError = {}
+//        )
     }
 
     override fun onDestroy() {

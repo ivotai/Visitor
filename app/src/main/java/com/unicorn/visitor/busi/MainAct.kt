@@ -25,8 +25,7 @@ class MainAct : AppCompatActivity() {
                 .addItem(newItem(FontAwesome.Icon.faw_address_book, FontAwesome.Icon.faw_address_book2, "黑名单"))
                 .build()
         navigationController.setupWithViewPager(viewPager)
-        viewPager.offscreenPageLimit = 1
-        viewPager.adapter = MainPagerAdapter(supportFragmentManager)
+        viewPager.adapter = MainAdapter(supportFragmentManager)
     }
 
     private val defaultColor = Color.parseColor("#aeaeae")
