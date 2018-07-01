@@ -15,16 +15,21 @@ import com.baidu.ocr.sdk.model.IDCardResult
 import com.baidu.ocr.ui.camera.CameraActivity
 import com.baidu.ocr.ui.camera.CameraNativeHelper
 import com.baidu.ocr.ui.camera.CameraView
+import com.blankj.utilcode.util.ToastUtils
+import com.hwangjr.rxbus.RxBus
 import com.unicorn.visitor.R
 import com.unicorn.visitor.app.dagger2.component.ComponentsHolder
+import com.unicorn.visitor.busi.visitRecord.event.RefreshVisitRecordListEvent
 import com.unicorn.visitor.clicks
 import com.unicorn.visitor.custom
 import com.unicorn.visitor.model.Leader
+import com.unicorn.visitor.model.VisitRecord
 import com.unicorn.visitor.model.Visitor
 import com.unicorn.visitor.util.FileUtil
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.act_add_visit_record.*
 import java.io.File
+import java.util.*
 
 class AddVisitRecordAct : AppCompatActivity() {
 
@@ -49,6 +54,7 @@ class AddVisitRecordAct : AppCompatActivity() {
 
         flBack.clicks().subscribe { finish() }
         flScan.clicks().subscribe { scan() }
+        tvConfirm.clicks().subscribe { addVisitRecord() }
     }
 
     private fun initAccessTokenWithAkSk() {
@@ -120,7 +126,9 @@ class AddVisitRecordAct : AppCompatActivity() {
             OCR.getInstance(this).recognizeIDCard(it, object : OnResultListener<IDCardResult> {
                 override fun onResult(result: IDCardResult?) {
                     if (result != null) {
-                        addVisitRecord(result)
+                        tvName.text = result.name.words
+                        tvGender.text = result.gender.words
+                        tvIdCard.text = result.idNumber.words
                     }
                 }
 
@@ -131,18 +139,22 @@ class AddVisitRecordAct : AppCompatActivity() {
         }
     }
 
-    private fun addVisitRecord(result: IDCardResult) {
-        val visitor = Visitor(name = result.name.words, gender = result.gender.words, idCard = result.idNumber.words)
-        tvName.text = visitor.name
-        tvGender.text = visitor.gender
-        tvIdCard.text = visitor.idCard
-//        val leader = leaderList[0]
-//        val record = VisitRecord(visitor, leader, Date().time)
-//        val api = ComponentsHolder.appComponent.getGeneralApi()
-//        api.addVisitRecord(record).custom().subscribeBy(
-//                onNext = {},
-//                onError = {}
-//        )
+    private fun addVisitRecord() {
+        val visitor = Visitor(name = tvName.text.toString(), gender = tvGender.text.toString(), idCard = tvIdCard.text.toString())
+        // todo leader & reserveTime
+        val leader = leaderList[0]
+        val record = VisitRecord(visitor, leader, Date().time)
+        val api = ComponentsHolder.appComponent.getGeneralApi()
+        api.addVisitRecord(record).custom().subscribeBy(
+                onNext = {
+                    if (it.success) {
+                        ToastUtils.showShort("访客登记完成")
+                        RxBus.get().post(RefreshVisitRecordListEvent())
+                        finish()
+                    }
+                },
+                onError = {}
+        )
     }
 
     override fun onDestroy() {

@@ -21,7 +21,7 @@ interface GeneralApi {
 
     @Headers("Content-Type: application/json")
     @POST("api/v1/visitRecord/app")
-    fun addVisitRecord(@Body visitRecord: VisitRecord): Observable<Any>
+    fun addVisitRecord(@Body visitRecord: VisitRecord): Observable<SuccessResponse>
 
     @GET("api/v1/visitRecord/app")
     fun getVisitRecord(@Query("page") page: Int, @Query("pageSize") pageSize: Int = 10,
