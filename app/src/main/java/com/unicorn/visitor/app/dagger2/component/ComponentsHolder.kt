@@ -1,4 +1,4 @@
-package com.unicorn.visitor.component
+package com.unicorn.visitor.app.dagger2.component
 
 object ComponentsHolder {
 

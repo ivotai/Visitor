@@ -1,4 +1,4 @@
-package com.unicorn.visitor.act
+package com.unicorn.visitor.main
 
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
@@ -7,20 +7,16 @@ import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.unicorn.visitor.R
-import com.unicorn.visitor.component.ComponentsHolder
-import com.unicorn.visitor.custom
-import io.reactivex.rxkotlin.subscribeBy
-import kotlinx.android.synthetic.main.act_guard.*
+import kotlinx.android.synthetic.main.act_main.*
 import me.majiajie.pagerbottomtabstrip.item.BaseTabItem
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView2
 
-class GuardAct : AppCompatActivity() {
+class MainAct : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.act_guard)
+        setContentView(R.layout.act_main)
         initViews()
-//        Intent(this,AddVisitRecordAct::class.java).let { startActivity(it) }
     }
 
     private fun initViews() {
@@ -30,7 +26,7 @@ class GuardAct : AppCompatActivity() {
                 .build()
         navigationController.setupWithViewPager(viewPager)
         viewPager.offscreenPageLimit = 1
-        viewPager.adapter = GuardPagerAdapter(supportFragmentManager)
+        viewPager.adapter = MainPagerAdapter(supportFragmentManager)
     }
 
     private val defaultColor = Color.parseColor("#aeaeae")

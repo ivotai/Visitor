@@ -1,4 +1,4 @@
-package com.unicorn.visitor.act
+package com.unicorn.visitor.main.blacklist
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

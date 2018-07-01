@@ -1,4 +1,4 @@
-package com.unicorn.visitor.act
+package com.unicorn.visitor.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,9 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.blankj.utilcode.util.ToastUtils
 import com.unicorn.visitor.R
-import com.unicorn.visitor.R.id.etAccount
 import com.unicorn.visitor.clicks
-import com.unicorn.visitor.component.ComponentsHolder
+import com.unicorn.visitor.app.dagger2.component.ComponentsHolder
 import com.unicorn.visitor.custom
 import com.unicorn.visitor.model.UserInfo
 import io.reactivex.rxkotlin.subscribeBy
@@ -39,7 +38,7 @@ class LoginAct : AppCompatActivity() {
                 onNext = {
                     if (it.success) {
                         UserInfo.loginResponse = it
-                        Intent(this@LoginAct, GuardAct::class.java).let { startActivity(it) }
+                        Intent(this@LoginAct, MainAct::class.java).let { startActivity(it) }
                         finish()
                     } else {
                         it.message.let { ToastUtils.showShort(it) }

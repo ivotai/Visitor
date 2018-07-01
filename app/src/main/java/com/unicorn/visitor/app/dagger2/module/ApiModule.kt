@@ -1,6 +1,6 @@
-package com.unicorn.visitor.module
+package com.unicorn.visitor.app.dagger2.module
 
-import com.unicorn.visitor.api.GeneralApi
+import com.unicorn.visitor.app.api.GeneralApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

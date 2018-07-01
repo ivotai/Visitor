@@ -1,4 +1,4 @@
-package com.unicorn.visitor.module
+package com.unicorn.visitor.app.dagger2.module
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.unicorn.visitor.model.UserInfo

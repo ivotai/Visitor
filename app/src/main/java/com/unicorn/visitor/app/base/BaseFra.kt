@@ -1,4 +1,4 @@
-package com.unicorn.visitor.base
+package com.unicorn.visitor.app.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

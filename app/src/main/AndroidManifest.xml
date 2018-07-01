@@ -15,15 +15,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".act.LoginAct">
+        <activity android:name=".main.LoginAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".act.GuardAct" />
-        <activity android:name=".act.AddVisitRecordAct"></activity>
+        <activity android:name="com.unicorn.visitor.main.MainAct" />
+        <activity android:name="com.unicorn.visitor.main.visitRecord.AddVisitRecordAct"/>
     </application>
 
 </manifest>

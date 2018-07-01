@@ -1,4 +1,4 @@
-package com.unicorn.visitor.act
+package com.unicorn.visitor.main.visitRecord
 
 import android.app.Activity
 import android.content.Intent
@@ -15,7 +15,7 @@ import com.baidu.ocr.ui.camera.CameraActivity
 import com.baidu.ocr.ui.camera.CameraNativeHelper
 import com.baidu.ocr.ui.camera.CameraView
 import com.unicorn.visitor.R
-import com.unicorn.visitor.component.ComponentsHolder
+import com.unicorn.visitor.app.dagger2.component.ComponentsHolder
 import com.unicorn.visitor.custom
 import com.unicorn.visitor.model.Leader
 import com.unicorn.visitor.model.VisitRecord

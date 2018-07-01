@@ -1,4 +1,4 @@
-package com.unicorn.visitor.api
+package com.unicorn.visitor.app.api
 
 import com.unicorn.visitor.model.Leader
 import com.unicorn.visitor.model.ProcessInfo
@@ -31,7 +31,6 @@ interface GeneralApi {
     fun getBlacklist(@Query("page") page: Int, @Query("pageSize") pageSize: Int = 10,
                      @Query("keyword") keyword: String = ""): Observable<PageResponse<Visitor>>
 
-//    @FormUrlEncoded
     @POST("api/v1/visitRecord/{visitRecordId}/process")
     fun processVisitRecord(@Path("visitRecordId") visitRecordId: String,
                            @Body processInfo: ProcessInfo): Observable<SuccessResponse>
