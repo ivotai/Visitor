@@ -1,4 +1,4 @@
-package com.unicorn.visitor.main
+package com.unicorn.visitor.busi
 
 import android.annotation.SuppressLint
 import android.content.Intent

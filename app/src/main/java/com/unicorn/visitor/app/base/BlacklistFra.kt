@@ -3,7 +3,7 @@ package com.unicorn.visitor.app.base
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import com.unicorn.visitor.R
-import com.unicorn.visitor.main.blacklist.BlacklistAdapter
+import com.unicorn.visitor.busi.blacklist.BlacklistAdapter
 import com.unicorn.visitor.app.dagger2.component.ComponentsHolder
 import com.unicorn.visitor.model.Visitor
 import com.unicorn.visitor.model.response.PageResponse

@@ -1,4 +1,4 @@
-package com.unicorn.visitor.main.visitRecord
+package com.unicorn.visitor.busi.visitRecord
 
 import android.support.v4.content.ContextCompat
 import android.view.View
@@ -12,7 +12,7 @@ import com.unicorn.visitor.R
 import com.unicorn.visitor.clicks
 import com.unicorn.visitor.app.dagger2.component.ComponentsHolder
 import com.unicorn.visitor.custom
-import com.unicorn.visitor.main.visitRecord.event.RefreshVisitRecordListEvent
+import com.unicorn.visitor.busi.visitRecord.event.RefreshVisitRecordListEvent
 import com.unicorn.visitor.model.ProcessInfo
 import com.unicorn.visitor.model.UserInfo
 import com.unicorn.visitor.model.VisitRecord

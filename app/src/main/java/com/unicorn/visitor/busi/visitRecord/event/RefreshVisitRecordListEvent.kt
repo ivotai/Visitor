@@ -1,4 +1,4 @@
-package com.unicorn.visitor.main.visitRecord.event
+package com.unicorn.visitor.busi.visitRecord.event
 
 /**
  *   2018/6/30: 由 thinkpad 创建

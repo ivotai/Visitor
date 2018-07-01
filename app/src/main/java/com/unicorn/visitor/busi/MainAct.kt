@@ -1,4 +1,4 @@
-package com.unicorn.visitor.main
+package com.unicorn.visitor.busi
 
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity

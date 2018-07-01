@@ -1,9 +1,9 @@
-package com.unicorn.visitor.main
+package com.unicorn.visitor.busi
 
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.unicorn.visitor.app.base.BlacklistFra
-import com.unicorn.visitor.main.visitRecord.VisitorRecordFra
+import com.unicorn.visitor.busi.visitRecord.VisitorRecordFra
 
 class MainPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 

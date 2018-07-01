@@ -1,4 +1,4 @@
-package com.unicorn.visitor.main.visitRecord
+package com.unicorn.visitor.busi.visitRecord
 
 import android.app.Activity
 import android.content.Intent
