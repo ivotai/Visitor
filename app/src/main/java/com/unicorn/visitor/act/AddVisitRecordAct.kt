@@ -20,7 +20,7 @@ import com.unicorn.visitor.custom
 import com.unicorn.visitor.model.Leader
 import com.unicorn.visitor.model.VisitRecord
 import com.unicorn.visitor.model.Visitor
-import com.unicorn.visitor.orc.FileUtil
+import com.unicorn.visitor.util.FileUtil
 import io.reactivex.rxkotlin.subscribeBy
 import java.io.File
 import java.util.*

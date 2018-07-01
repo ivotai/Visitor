@@ -1,20 +1,24 @@
 package com.unicorn.visitor.base
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.hwangjr.rxbus.RxBus
+import com.hwangjr.rxbus.annotation.Subscribe
 import com.unicorn.visitor.R
+import com.unicorn.visitor.act.AddVisitRecordAct
 import com.unicorn.visitor.act.VisitorRecordAdapter
+import com.unicorn.visitor.clicks
 import com.unicorn.visitor.component.ComponentsHolder
+import com.unicorn.visitor.event.RefreshVisitRecordListEvent
 import com.unicorn.visitor.model.UserInfo
 import com.unicorn.visitor.model.VisitRecord
 import com.unicorn.visitor.model.response.PageResponse
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fra_visit_record.*
-import com.hwangjr.rxbus.annotation.Subscribe
-import com.unicorn.visitor.event.RefreshVisitRecordListEvent
 
 /**
  *   2018/6/28: 由 thinkpad 创建
@@ -36,9 +40,11 @@ class VisitorRecordFra : PageFra<VisitRecord>() {
         return api.getVisitRecord(page)
     }
 
+    @SuppressLint("CheckResult")
     override fun initViews() {
         super.initViews()
         flAdd.visibility = if (UserInfo.isGuard) View.VISIBLE else View.INVISIBLE
+        flAdd.clicks().subscribe { Intent(context, AddVisitRecordAct::class.java).let { startActivity(it) } }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

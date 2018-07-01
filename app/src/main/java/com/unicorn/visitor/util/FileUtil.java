@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2017 Baidu, Inc. All Rights Reserved.
  */
-package com.unicorn.visitor.orc;
+package com.unicorn.visitor.util;
 
 import android.content.Context;
 
