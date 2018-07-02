@@ -25,9 +25,9 @@ class VisitorRecordAdapter : BaseQuickAdapter<VisitRecord, BaseViewHolder>(R.lay
 
     override fun convert(helper: BaseViewHolder, item: VisitRecord) {
         helper.apply {
-            setText(R.id.tvVisitorAndLeader, "${item.visitor.name}请求来访${item.leader.name}")
+            setText(R.id.tvVisitorAndLeader, "${item.visitor.name}请求来访${item.leader.name} ${item.status}")
             setText(R.id.tvReserveTime, DateTime(item.reserveTime).toString("yyyy-MM-dd"))
-            setText(R.id.tvReason, "1984年原金薮乡龙门大队副支书龚盛家负责架设本大队高、低压输电线路，各生产队农户安装生产、生活用电设备期间，他儿子龚铁山在本大队小学学校代课，")
+            setText(R.id.tvDescription, "1984年原金薮乡龙门大队副支书龚盛家负责架设本大队高、低压输电线路，各生产队农户安装生产、生活用电设备期间，他儿子龚铁山在本大队小学学校代课，")
 
             listOf(R.id.tvAgree, R.id.tvDisagree).forEach {
                 getView<View>(it).visibility =

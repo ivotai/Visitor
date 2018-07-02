@@ -337,7 +337,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/etReason"
+                        android:id="@+id/etDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"

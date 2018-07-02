@@ -143,7 +143,7 @@ class AddVisitRecordAct : AppCompatActivity() {
         val visitor = Visitor(name = tvName.text.toString(), gender = tvGender.text.toString(), idCard = tvIdCard.text.toString())
         // todo leader & reserveTime
         val leader = leaderList[0]
-        val record = VisitRecord(visitor, leader, Date().time)
+        val record = VisitRecord(visitor, leader, Date().time, description = etDescription.text.toString())
         val api = ComponentsHolder.appComponent.getGeneralApi()
         api.addVisitRecord(record).custom().subscribeBy(
                 onNext = {

@@ -60,8 +60,7 @@ class VisitRecordDetailAct : AppCompatActivity() {
         tvCompany.text = visitor.company
         tvLeader.text = visitRecord.leader.name
         tvReserveTime.text = DateTime(visitRecord.reserveTime).toString("yyyy-MM-dd")
-        // todo
-        tvReason.text = "sdfsdf"
+        tvDescription.text = visitRecord.description
     }
 
     private fun process(visitRecordStatus: Int) {

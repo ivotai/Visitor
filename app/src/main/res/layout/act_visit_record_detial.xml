@@ -356,7 +356,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvReason"
+                        android:id="@+id/tvDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="top"
