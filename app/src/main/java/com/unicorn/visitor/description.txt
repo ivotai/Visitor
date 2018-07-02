@@ -13,3 +13,7 @@ https://github.com/mikepenz/Android-Iconics/issues/306
 3. 最好限制一下，只能秘书和门卫登录。
 
 4. 连续刷新会报错。
+
+5. 加入黑名单，返回 success，但黑名单中没有显示新的来访人。
+
+6. VisitRecord 中缺来访事由字段。
