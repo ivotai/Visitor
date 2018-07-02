@@ -14,6 +14,15 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        ndk {
+//        选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "f40c697dfe8002cfcaad870c",
+                JPUSH_CHANNEL: "developer-default"//暂时填写默认值即可.
+        ]
     }
     buildTypes {
         debug {
@@ -40,8 +49,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     implementation 'com.google.dagger:dagger:2.14.1'
     kapt 'com.google.dagger:dagger-compiler:2.14.1'
-    //    implementation 'cn.jiguang.sdk:jcore:1.1.9'
-    //    implementation 'cn.jiguang.sdk:jpush:3.1.1'
+    implementation 'cn.jiguang.sdk:jcore:1.1.9'
+    implementation 'cn.jiguang.sdk:jpush:3.1.1'
     implementation 'com.blankj:utilcode:1.16.4'
     implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
     implementation 'com.wada811:android-material-design-colors:3.0.0'
@@ -66,5 +75,5 @@ kapt {
 }
 
 androidExtensions {
-    experimental = true
+//    experimental = true
 }

@@ -31,6 +31,7 @@ interface GeneralApi {
     fun getBlacklist(@Query("page") page: Int, @Query("pageSize") pageSize: Int = 10,
                      @Query("keyword") keyword: String = ""): Observable<PageResponse<Visitor>>
 
+//    @Headers("Content-Type: application/json")
     @POST("api/v1/visitRecord/{visitRecordId}/process")
     fun processVisitRecord(@Path("visitRecordId") visitRecordId: String,
                            @Body processInfo: ProcessInfo): Observable<SuccessResponse>

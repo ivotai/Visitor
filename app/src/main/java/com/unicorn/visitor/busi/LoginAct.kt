@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import cn.jpush.android.api.JPushInterface
 import com.blankj.utilcode.util.ToastUtils
 import com.unicorn.visitor.R
 import com.unicorn.visitor.clicks
@@ -38,6 +40,7 @@ class LoginAct : AppCompatActivity() {
                 onNext = {
                     if (it.success) {
                         UserInfo.loginResponse = it
+                        setAlias()
                         Intent(this@LoginAct, MainAct::class.java).let { startActivity(it) }
                         finish()
                     } else {
@@ -46,6 +49,11 @@ class LoginAct : AppCompatActivity() {
                 },
                 onComplete = {}
         )
+    }
+
+    private fun setAlias() {
+        JPushInterface.setAlias(this, UserInfo.userId) { p0, p1, p2 ->
+        }
     }
 
 }

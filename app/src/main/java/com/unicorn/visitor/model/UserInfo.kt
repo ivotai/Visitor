@@ -14,7 +14,7 @@ object UserInfo {
 
 //    val username get() = currentUser.username
 
-//    val userId: String get() = currentUser.userId
+    val userId: String get() = currentUser.userId
 
     val isGuard get() = currentUser.roleTag == "Guard"
 

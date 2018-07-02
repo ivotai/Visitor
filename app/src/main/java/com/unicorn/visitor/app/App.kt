@@ -1,11 +1,13 @@
 package com.unicorn.visitor.app
 
 import android.app.Application
+import cn.jpush.android.api.JPushInterface
 import com.blankj.utilcode.util.Utils
 import com.facebook.stetho.Stetho
 import net.danlew.android.joda.JodaTimeAndroid
 
 class App : Application() {
+
     override fun onCreate() {
         super.onCreate()
         Utils.init(this)
@@ -15,8 +17,8 @@ class App : Application() {
     }
 
     private fun initJPush() {
-//        JPushInterface.setDebugMode(true)
-//        JPushInterface.init(this)
+        JPushInterface.setDebugMode(true)
+        JPushInterface.init(this)
     }
 
 }
