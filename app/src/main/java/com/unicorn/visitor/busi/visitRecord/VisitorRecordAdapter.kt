@@ -24,7 +24,7 @@ class VisitorRecordAdapter : BaseQuickAdapter<VisitRecord, BaseViewHolder>(R.lay
 
     override fun convert(helper: BaseViewHolder, item: VisitRecord) {
         helper.apply {
-            setText(R.id.tvVisitorAndLeader, "${item.visitor.name}请求来访${item.leader.name} ${item.status}")
+            setText(R.id.tvVisitorAndLeader, "${item.visitor.name}请求来访${item.leader.name}")
             setText(R.id.tvReserveTime, DateTime(item.reserveTime).toString("yyyy-MM-dd"))
             setText(R.id.tvDescription, item.description)
 
