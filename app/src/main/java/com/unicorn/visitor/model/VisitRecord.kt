@@ -14,3 +14,11 @@ data class VisitRecord(val visitor: Visitor,
                        val status: Int = 1,
                        val description: String) : Serializable
 //status：{ 1.未处理 2.同意来访 3.拒绝来访 4.列入黑名单 }
+{
+    fun getStatusText() = when (status) {
+        1 -> "未处理"
+        2 -> "同意来访"
+        3 -> "拒绝来访"
+        else -> "列入黑名单"
+    }
+}

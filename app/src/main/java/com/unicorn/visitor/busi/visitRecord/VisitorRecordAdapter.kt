@@ -10,11 +10,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.hwangjr.rxbus.RxBus
 import com.unicorn.visitor.R
-import com.unicorn.visitor.clicks
 import com.unicorn.visitor.app.dagger2.component.ComponentsHolder
-import com.unicorn.visitor.custom
 import com.unicorn.visitor.busi.visitRecord.event.RefreshVisitRecordListEvent
-import com.unicorn.visitor.model.ProcessInfo
+import com.unicorn.visitor.clicks
+import com.unicorn.visitor.custom
 import com.unicorn.visitor.model.UserInfo
 import com.unicorn.visitor.model.VisitRecord
 import com.unicorn.visitor.util.DialogUtil
@@ -27,16 +26,16 @@ class VisitorRecordAdapter : BaseQuickAdapter<VisitRecord, BaseViewHolder>(R.lay
         helper.apply {
             setText(R.id.tvVisitorAndLeader, "${item.visitor.name}请求来访${item.leader.name} ${item.status}")
             setText(R.id.tvReserveTime, DateTime(item.reserveTime).toString("yyyy-MM-dd"))
-            setText(R.id.tvDescription, "1984年原金薮乡龙门大队副支书龚盛家负责架设本大队高、低压输电线路，各生产队农户安装生产、生活用电设备期间，他儿子龚铁山在本大队小学学校代课，")
+            setText(R.id.tvDescription, item.description)
 
             listOf(R.id.tvAgree, R.id.tvDisagree).forEach {
-//                getView<View>(it).visibility =
-//                        if (UserInfo.isSecretary && item.status == 1) View.VISIBLE else View.INVISIBLE
+                getView<View>(it).visibility =
+                        if (UserInfo.isSecretary && item.status == 1) View.VISIBLE else View.INVISIBLE
             }
 
             val tvPrompt = getView<TextView>(R.id.tvPrompt)
             tvPrompt.setTextColor(ContextCompat.getColor(mContext, if (item.status == 1) R.color.md_red_400 else R.color.md_teal_400))
-            tvPrompt.text = if (item.status == 1) if (UserInfo.isSecretary) "请尽快处理请求" else "等待秘书处理" else "已处理"
+            tvPrompt.text = if (item.status == 1) if (UserInfo.isSecretary) "请尽快处理请求" else "等待秘书处理" else item.getStatusText()
 
             getView<View>(R.id.tvAgree).clicks().subscribe {
                 DialogUtil.showConfirm(mContext, "确认同意该请求",

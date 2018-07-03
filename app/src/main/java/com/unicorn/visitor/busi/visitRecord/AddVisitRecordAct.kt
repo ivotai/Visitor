@@ -28,8 +28,10 @@ import com.unicorn.visitor.model.Leader
 import com.unicorn.visitor.model.VisitRecord
 import com.unicorn.visitor.model.Visitor
 import com.unicorn.visitor.util.FileUtil
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.act_add_visit_record.*
+import org.joda.time.DateTime
 import java.io.File
 import java.util.*
 
@@ -37,6 +39,8 @@ import java.util.*
 class AddVisitRecordAct : AppCompatActivity() {
 
     private lateinit var leaderList: List<Leader>
+
+    private lateinit var reserveTime: DateTime
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +53,6 @@ class AddVisitRecordAct : AppCompatActivity() {
         api.getAllLeader().custom().subscribeBy(
                 onNext = {
                     leaderList = it
-//                    val dataset = listOf("One", "Two", "Three", "Four", "Five")
                     tvLeader.attachDataSource(leaderList)
                 },
                 onError = {
@@ -61,7 +64,23 @@ class AddVisitRecordAct : AppCompatActivity() {
         flScan.clicks().subscribe { scan() }
         tvConfirm.clicks().subscribe { addVisitRecord() }
 
+        reserveTime = DateTime()
+        tvReserveTime.text = reserveTime.toString("yyyy-MM-dd")
+        tvReserveTime.clicks().subscribe { showDatePickerDialog() }
+    }
 
+    private fun showDatePickerDialog() {
+        val now = Calendar.getInstance()
+        val dpd = DatePickerDialog.newInstance(
+                { _, year, monthOfYear, dayOfMonth ->
+                    reserveTime = DateTime(year, monthOfYear + 1, dayOfMonth, 0, 0)
+                    tvReserveTime.text = reserveTime.toString("yyyy-MM-dd")
+                },
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        )
+        dpd.show(fragmentManager, "DatePickerDialog")
     }
 
     private fun initAccessTokenWithAkSk() {
@@ -90,7 +109,7 @@ class AddVisitRecordAct : AppCompatActivity() {
         scan()
     }
 
-    fun scan() {
+    private fun scan() {
         val intent = Intent(this, CameraActivity::class.java)
         intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                 FileUtil.getSaveFile(application).absolutePath)
@@ -149,10 +168,19 @@ class AddVisitRecordAct : AppCompatActivity() {
     }
 
     private fun addVisitRecord() {
-        val visitor = Visitor(name = tvName.text.toString(), gender = tvGender.text.toString(), idCard = tvIdCard.text.toString())
-        // todo reserveTime
+        if (TextUtils.isEmpty(tvName.text)) {
+            ToastUtils.showShort("请扫描身份证")
+            return
+        }
+        if (TextUtils.isEmpty(etDescription.text)) {
+            ToastUtils.showShort("请填写来访事由")
+            return
+        }
+
+        val visitor = Visitor(name = tvName.text.toString(), gender = tvGender.text.toString(),
+                idCard = tvIdCard.text.toString(), company = etCompany.text.toString())
         val leader = leaderList[tvLeader.selectedIndex]
-        val record = VisitRecord(visitor, leader, Date().time, description = etDescription.text.toString())
+        val record = VisitRecord(visitor, leader, reserveTime = reserveTime.toDate().time, description = etDescription.text.toString())
         val api = ComponentsHolder.appComponent.getGeneralApi()
         api.addVisitRecord(record).custom().subscribeBy(
                 onNext = {
