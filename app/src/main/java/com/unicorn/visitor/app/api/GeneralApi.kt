@@ -36,6 +36,10 @@ interface GeneralApi {
     fun processVisitRecord(@Path("visitRecordId") visitRecordId: String,
                            @Field("status") status: Int): Observable<SuccessResponse>
 
+    @GET("api/v1/visitRecord/app/get")
+    fun getVisitRecord(@Query("objectId") objectId: String): Observable<VisitRecord>
+
+
 //    @FormUrlEncoded
 //    @POST("login/token")
 //    fun loginByToken(@Field("token") token: String): Observable<LoginResponse>

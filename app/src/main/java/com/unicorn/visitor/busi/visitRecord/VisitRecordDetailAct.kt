@@ -12,7 +12,6 @@ import com.unicorn.visitor.app.dagger2.component.ComponentsHolder
 import com.unicorn.visitor.busi.visitRecord.event.RefreshVisitRecordListEvent
 import com.unicorn.visitor.clicks
 import com.unicorn.visitor.custom
-import com.unicorn.visitor.model.ProcessInfo
 import com.unicorn.visitor.model.UserInfo
 import com.unicorn.visitor.model.VisitRecord
 import com.unicorn.visitor.util.DialogUtil
@@ -22,6 +21,7 @@ import org.joda.time.DateTime
 
 class VisitRecordDetailAct : AppCompatActivity() {
 
+    private lateinit var visitRecordId: String
     private lateinit var visitRecord: VisitRecord
 
     @SuppressLint("CheckResult")
@@ -29,8 +29,9 @@ class VisitRecordDetailAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.act_visit_record_detial)
 
-        visitRecord = intent.getSerializableExtra("visitRecord") as VisitRecord
-        fillViews()
+        visitRecordId = intent.getStringExtra("visitRecordId")
+        getVisitRecord()
+//        fillViews()
 
         listOf(ll1, ll2).forEach { it.visibility = if (UserInfo.isSecretary && visitRecord.status == 1) View.VISIBLE else View.GONE }
 
@@ -50,6 +51,17 @@ class VisitRecordDetailAct : AppCompatActivity() {
                     MaterialDialog.SingleButtonCallback { _, _ -> process(3) }
             )
         }
+    }
+
+    private fun getVisitRecord() {
+        val api = ComponentsHolder.appComponent.getGeneralApi()
+        api.getVisitRecord(visitRecordId).custom().subscribeBy(
+                onNext = {
+                    visitRecord = it
+                    fillViews()
+                },
+                onError = {}
+        )
     }
 
     private fun fillViews() {

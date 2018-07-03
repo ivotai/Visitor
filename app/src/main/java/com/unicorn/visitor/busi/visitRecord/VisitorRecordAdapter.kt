@@ -50,7 +50,7 @@ class VisitorRecordAdapter : BaseQuickAdapter<VisitRecord, BaseViewHolder>(R.lay
 
             getView<View>(R.id.root).clicks().subscribe {
                 Intent(mContext,VisitRecordDetailAct::class.java).apply {
-                    putExtra("visitRecord",item)
+                    putExtra("visitRecordId",item.objectId)
                 }.let { mContext.startActivity(it) }
             }
         }

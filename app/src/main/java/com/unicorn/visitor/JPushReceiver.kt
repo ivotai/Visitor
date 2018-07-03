@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import cn.jpush.android.api.JPushInterface
-import com.blankj.utilcode.util.ToastUtils
+import com.unicorn.visitor.busi.visitRecord.VisitRecordDetailAct
 import org.json.JSONObject
 
 
@@ -19,10 +19,10 @@ class JPushReceiver : BroadcastReceiver() {
             val jsonObject = JSONObject(jsonString)
             val visitRecordId = jsonObject.getString("visitRecordId")
 
-//            Intent(context, ReceivingCaseAct::class.java).apply {
-//                putExtra("caseId", caseId)
-//                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-//            }.let { context.startActivity(it) }
+            Intent(context, VisitRecordDetailAct::class.java).apply {
+                putExtra("visitRecordId", visitRecordId)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            }.let { context.startActivity(it) }
 
         }
     }
