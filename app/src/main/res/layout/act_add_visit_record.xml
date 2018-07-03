@@ -127,6 +127,7 @@
                         <TextView
                             android:hint="请扫描身份证"
                             android:id="@+id/tvName"
+                            android:gravity="end"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/md_black"
@@ -158,6 +159,7 @@
                             android:id="@+id/tvGender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:gravity="end"
                             android:hint="请扫描身份证"
                             android:textColor="@color/md_black"
                             android:textSize="16dp" />
@@ -188,7 +190,39 @@
                             android:id="@+id/tvIdCard"
                             android:hint="请扫描身份证"
                             android:layout_width="wrap_content"
+                            android:gravity="end"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/md_black"
+                            android:textSize="16dp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/md_grey_300" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="单位"
+                            android:textColor="@color/md_grey_600"
+                            android:textSize="16dp" />
+
+                        <EditText
+                            android:id="@+id/etCompany"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="可为空"
                             android:textColor="@color/md_black"
                             android:textSize="16dp" />
 
@@ -217,41 +251,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
-                        android:text="其他信息"
+                        android:text="受访人信息"
                         android:textColor="@color/md_black"
                         android:textSize="17dp"
                         android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="16dp">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="单位"
-                            android:textColor="@color/md_grey_600"
-                            android:textSize="16dp" />
-
-                        <EditText
-                            android:id="@+id/etCompany"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:hint="可为空"
-                            android:textColor="@color/md_black"
-                            android:textSize="16dp" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@color/md_grey_300" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

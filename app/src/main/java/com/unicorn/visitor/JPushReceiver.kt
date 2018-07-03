@@ -8,16 +8,16 @@ import com.blankj.utilcode.util.ToastUtils
 import org.json.JSONObject
 
 
-class MyReceiver : BroadcastReceiver() {
+class JPushReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        ToastUtils.showShort("hehe")
+
         if (JPushInterface.ACTION_NOTIFICATION_OPENED == intent.action) {
 
             val bundle = intent.extras
             val jsonString = bundle.getString(JPushInterface.EXTRA_EXTRA)
             val jsonObject = JSONObject(jsonString)
-//            val caseId = jsonObject.getString("caseId")
+            val visitRecordId = jsonObject.getString("visitRecordId")
 
 //            Intent(context, ReceivingCaseAct::class.java).apply {
 //                putExtra("caseId", caseId)

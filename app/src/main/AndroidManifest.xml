@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-
         android:name=".app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,7 +29,7 @@
         <activity android:name=".busi.visitRecord.VisitRecordDetailAct"></activity>
 
         <receiver
-            android:name=".MyReceiver"
+            android:name=".JPushReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />

@@ -65,7 +65,7 @@ class VisitRecordDetailAct : AppCompatActivity() {
 
     private fun process(visitRecordStatus: Int) {
         val api = ComponentsHolder.appComponent.getGeneralApi()
-        api.processVisitRecord(visitRecord.objectId, ProcessInfo(visitRecordStatus)).custom().subscribeBy(
+        api.processVisitRecord(visitRecord.objectId, (visitRecordStatus)).custom().subscribeBy(
                 onNext = {
                     if (it.success) {
                         ToastUtils.showShort("请求已处理")

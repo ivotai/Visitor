@@ -3,6 +3,8 @@ package com.unicorn.visitor.busi.visitRecord
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
@@ -30,10 +32,13 @@ import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.act_add_visit_record.*
 import java.io.File
 import java.util.*
+import android.os.Environment
+import com.blankj.utilcode.util.FileUtils
+
 
 class AddVisitRecordAct : AppCompatActivity() {
 
-    lateinit var leaderList: List<Leader>
+    private lateinit var leaderList: List<Leader>
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -126,9 +131,11 @@ class AddVisitRecordAct : AppCompatActivity() {
             OCR.getInstance(this).recognizeIDCard(it, object : OnResultListener<IDCardResult> {
                 override fun onResult(result: IDCardResult?) {
                     if (result != null) {
-                        tvName.text = result.name.words
-                        tvGender.text = result.gender.words
-                        tvIdCard.text = result.idNumber.words
+                        tvName.text = result.name.words.trim()
+                        tvGender.text = result.gender.words.trim()
+                        tvIdCard.text = result.idNumber.words.trim()
+
+                        FileUtils.copyFile(File(filePath), File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"1.jpg"))
                     }
                 }
 
@@ -138,6 +145,21 @@ class AddVisitRecordAct : AppCompatActivity() {
             })
         }
     }
+
+    private fun getFace(result:IDCardResult,filePath: String){
+        val rectX = result.address.location.width + result.address.location.left + 10
+        val rectY = result.name.location.top
+        val location = result.idNumber.location
+        val height = location.top - rectY - 20
+        val width = location.width + location.left - rectX + 40
+        val ocrBitmap = BitmapFactory.decodeFile(filePath)
+        if (ocrBitmap != null) {
+            val headBitmap = Bitmap.createBitmap(ocrBitmap, rectX, rectY, width, height, null,
+                    false)
+           FileUtil.saveImage(headBitmap)
+        }
+    }
+
 
     private fun addVisitRecord() {
         val visitor = Visitor(name = tvName.text.toString(), gender = tvGender.text.toString(), idCard = tvIdCard.text.toString())
@@ -151,6 +173,8 @@ class AddVisitRecordAct : AppCompatActivity() {
                         ToastUtils.showShort("访客登记完成")
                         RxBus.get().post(RefreshVisitRecordListEvent())
                         finish()
+                    }else{
+                        ToastUtils.showShort(it.message)
                     }
                 },
                 onError = {}
