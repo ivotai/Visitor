@@ -24,8 +24,8 @@ class LoginAct : AppCompatActivity() {
         tvLogin.clicks().subscribe { login() }
 
 //        etAccount.setText("mishu")
-        etAccount.setText("menwei")
-        etPassword.setText("123456")
+//        etAccount.setText("menwei")
+//        etPassword.setText("123456")
     }
 
     private fun login() {
@@ -52,7 +52,7 @@ class LoginAct : AppCompatActivity() {
 
     private fun setAlias() {
         JPushInterface.setAlias(this, UserInfo.userId) { p0, p1, p2 ->
-            ToastUtils.showShort("注册别名成功 $p1")
+//            ToastUtils.showShort("注册别名成功 $p1")
         }
     }
 

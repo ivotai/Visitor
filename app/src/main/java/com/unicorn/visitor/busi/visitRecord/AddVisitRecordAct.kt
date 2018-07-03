@@ -168,8 +168,9 @@ class AddVisitRecordAct : AppCompatActivity() {
     }
 
     private fun addVisitRecord() {
-        if (TextUtils.isEmpty(tvName.text)) {
-            ToastUtils.showShort("请扫描身份证")
+        if (TextUtils.isEmpty(tvName.text) || TextUtils.isEmpty(tvGender.text)
+                || TextUtils.isEmpty(tvIdCard.text)) {
+            ToastUtils.showShort("请扫描完整身份信息")
             return
         }
         if (TextUtils.isEmpty(etDescription.text)) {
