@@ -31,13 +31,10 @@ class VisitRecordDetailAct : AppCompatActivity() {
 
         visitRecordId = intent.getStringExtra("visitRecordId")
         getVisitRecord()
-//        fillViews()
-
-        listOf(ll1, ll2).forEach { it.visibility = if (UserInfo.isSecretary && visitRecord.status == 1) View.VISIBLE else View.GONE }
 
         flBack.clicks().subscribe { finish() }
         tvBlacklist.clicks().subscribe {
-            DialogUtil.showConfirm(this@VisitRecordDetailAct, "确认将${visitRecord.visitor.name}加入黑名单?",
+            DialogUtil.showConfirm(this@VisitRecordDetailAct, "确认将${visitRecord.visitor.name}加入黑名单",
                     MaterialDialog.SingleButtonCallback { _, _ -> process(4) }
             )
         }
@@ -73,6 +70,7 @@ class VisitRecordDetailAct : AppCompatActivity() {
         tvLeader.text = visitRecord.leader.name
         tvReserveTime.text = DateTime(visitRecord.reserveTime).toString("yyyy-MM-dd")
         tvDescription.text = visitRecord.description
+        listOf(ll1, ll2).forEach { it.visibility = if (UserInfo.isSecretary && visitRecord.status == 1) View.VISIBLE else View.GONE }
     }
 
     private fun process(visitRecordStatus: Int) {
