@@ -31,13 +31,10 @@ interface GeneralApi {
     fun getBlacklist(@Query("page") page: Int, @Query("pageSize") pageSize: Int = 10,
                      @Query("keyword") keyword: String = ""): Observable<PageResponse<Visitor>>
 
-
-    //    @Headers("Content-Type:application/x-www-form-urlencoded")
     @FormUrlEncoded
     @POST("api/v1/visitRecord/{visitRecordId}/process")
     fun processVisitRecord(@Path("visitRecordId") visitRecordId: String,
                            @Field("status") status: Int): Observable<SuccessResponse>
-
 
 //    @FormUrlEncoded
 //    @POST("login/token")

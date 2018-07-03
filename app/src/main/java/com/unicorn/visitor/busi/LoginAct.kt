@@ -23,8 +23,8 @@ class LoginAct : AppCompatActivity() {
 
         tvLogin.clicks().subscribe { login() }
 
-        etAccount.setText("mishu")
-//        etAccount.setText("menwei")
+//        etAccount.setText("mishu")
+        etAccount.setText("menwei")
         etPassword.setText("123456")
     }
 

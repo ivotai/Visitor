@@ -62,6 +62,7 @@ dependencies {
     implementation 'com.mikepenz:fontawesome-typeface:5.0.13.0@aar'
     implementation 'com.github.florent37:arclayout:1.0.3'
     implementation(name: 'pager-bottom-tab-strip', ext: 'aar')
+    implementation(name: 'nice-spinner', ext: 'aar')
     implementation 'com.loopeer.lib:shadow:0.0.4-beta3'
     implementation files('libs/ocr-sdk.jar')
     implementation project(':ocr_ui')

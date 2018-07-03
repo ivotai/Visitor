@@ -3,9 +3,8 @@ package com.unicorn.visitor.busi.visitRecord
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Environment
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import com.baidu.ocr.sdk.OCR
@@ -17,6 +16,7 @@ import com.baidu.ocr.sdk.model.IDCardResult
 import com.baidu.ocr.ui.camera.CameraActivity
 import com.baidu.ocr.ui.camera.CameraNativeHelper
 import com.baidu.ocr.ui.camera.CameraView
+import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.hwangjr.rxbus.RxBus
 import com.unicorn.visitor.R
@@ -32,8 +32,6 @@ import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.android.synthetic.main.act_add_visit_record.*
 import java.io.File
 import java.util.*
-import android.os.Environment
-import com.blankj.utilcode.util.FileUtils
 
 
 class AddVisitRecordAct : AppCompatActivity() {
@@ -51,6 +49,8 @@ class AddVisitRecordAct : AppCompatActivity() {
         api.getAllLeader().custom().subscribeBy(
                 onNext = {
                     leaderList = it
+//                    val dataset = listOf("One", "Two", "Three", "Four", "Five")
+                    tvLeader.attachDataSource(leaderList)
                 },
                 onError = {
                     it
@@ -60,6 +60,8 @@ class AddVisitRecordAct : AppCompatActivity() {
         flBack.clicks().subscribe { finish() }
         flScan.clicks().subscribe { scan() }
         tvConfirm.clicks().subscribe { addVisitRecord() }
+
+
     }
 
     private fun initAccessTokenWithAkSk() {
@@ -135,7 +137,7 @@ class AddVisitRecordAct : AppCompatActivity() {
                         tvGender.text = result.gender.words.trim()
                         tvIdCard.text = result.idNumber.words.trim()
 
-                        FileUtils.copyFile(File(filePath), File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"1.jpg"))
+                        FileUtils.copyFile(File(filePath), File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "1.jpg"))
                     }
                 }
 
@@ -146,25 +148,10 @@ class AddVisitRecordAct : AppCompatActivity() {
         }
     }
 
-    private fun getFace(result:IDCardResult,filePath: String){
-        val rectX = result.address.location.width + result.address.location.left + 10
-        val rectY = result.name.location.top
-        val location = result.idNumber.location
-        val height = location.top - rectY - 20
-        val width = location.width + location.left - rectX + 40
-        val ocrBitmap = BitmapFactory.decodeFile(filePath)
-        if (ocrBitmap != null) {
-            val headBitmap = Bitmap.createBitmap(ocrBitmap, rectX, rectY, width, height, null,
-                    false)
-           FileUtil.saveImage(headBitmap)
-        }
-    }
-
-
     private fun addVisitRecord() {
         val visitor = Visitor(name = tvName.text.toString(), gender = tvGender.text.toString(), idCard = tvIdCard.text.toString())
-        // todo leader & reserveTime
-        val leader = leaderList[0]
+        // todo reserveTime
+        val leader = leaderList[tvLeader.selectedIndex]
         val record = VisitRecord(visitor, leader, Date().time, description = etDescription.text.toString())
         val api = ComponentsHolder.appComponent.getGeneralApi()
         api.addVisitRecord(record).custom().subscribeBy(
@@ -173,7 +160,7 @@ class AddVisitRecordAct : AppCompatActivity() {
                         ToastUtils.showShort("访客登记完成")
                         RxBus.get().post(RefreshVisitRecordListEvent())
                         finish()
-                    }else{
+                    } else {
                         ToastUtils.showShort(it.message)
                     }
                 },
